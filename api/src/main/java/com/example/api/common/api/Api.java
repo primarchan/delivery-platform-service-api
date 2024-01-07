@@ -1,5 +1,6 @@
 package com.example.api.common.api;
 
+import com.example.api.common.error.ErrorCodeIfs;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +21,34 @@ public class Api<T> {
         var api = new Api<T>();
         api.result = Result.OK();
         api.body = data;
+
+        return api;
+    }
+
+    public static Api<Object> ERROR(Result result) {
+        var api = new Api<Object>();
+        api.result = result;
+
+        return api;
+    }
+
+    public static Api<Object> ERROR(ErrorCodeIfs errorCodeIfs) {
+        var api = new Api<Object>();
+        api.result = Result.ERROR(errorCodeIfs);
+
+        return api;
+    }
+
+    public static Api<Object> ERROR(ErrorCodeIfs errorCodeIfs, Throwable throwable) {
+        var api = new Api<Object>();
+        api.result = Result.ERROR(errorCodeIfs, throwable);
+
+        return api;
+    }
+
+    public static Api<Object> ERROR(ErrorCodeIfs errorCodeIfs, String description) {
+        var api = new Api<Object>();
+        api.result = Result.ERROR(errorCodeIfs, description);
 
         return api;
     }

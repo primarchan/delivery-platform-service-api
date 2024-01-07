@@ -1,4 +1,4 @@
-# 배달 플랫폼 API 프로젝트
+# 배달 플랫폼 서비스 API 프로젝트
 - Java, JPA, Spring Boot, Multi-Module 기반 배달 플랫폼 API
 
 ## TECH-STACK
