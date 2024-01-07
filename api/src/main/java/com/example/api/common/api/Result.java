@@ -33,16 +33,16 @@ public class Result {
         return Result.builder()
                 .resultCode(errorCodeIfs.getErrorCode())
                 .resultMessage(errorCodeIfs.getDescription())
-                .resultDescription("성공")
+                .resultDescription("에러 발생")
                 .build();
     }
 
-    public static Result ERROR(ErrorCodeIfs errorCodeIfs, Throwable throwable) {
+    public static Result ERROR(ErrorCodeIfs errorCodeIfs, Throwable cause) {
 
         return Result.builder()
                 .resultCode(errorCodeIfs.getErrorCode())
                 .resultMessage(errorCodeIfs.getDescription())
-                .resultDescription(throwable.getLocalizedMessage())
+                .resultDescription(cause.getLocalizedMessage())
                 .build();
     }
 

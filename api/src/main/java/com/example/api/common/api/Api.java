@@ -39,9 +39,9 @@ public class Api<T> {
         return api;
     }
 
-    public static Api<Object> ERROR(ErrorCodeIfs errorCodeIfs, Throwable throwable) {
+    public static Api<Object> ERROR(ErrorCodeIfs errorCodeIfs, Throwable cause) {
         var api = new Api<Object>();
-        api.result = Result.ERROR(errorCodeIfs, throwable);
+        api.result = Result.ERROR(errorCodeIfs, cause);
 
         return api;
     }
