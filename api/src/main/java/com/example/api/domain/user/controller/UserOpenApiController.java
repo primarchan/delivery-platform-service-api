@@ -1,6 +1,7 @@
 package com.example.api.domain.user.controller;
 
 import com.example.api.common.api.Api;
+import com.example.api.domain.token.controller.model.TokenResponse;
 import com.example.api.domain.user.business.UserBusiness;
 import com.example.api.domain.user.controller.model.request.UserLoginRequest;
 import com.example.api.domain.user.controller.model.request.UserRegisterRequest;
@@ -34,8 +35,8 @@ public class UserOpenApiController {
      * @apiNote 사용자 로그인
      */
     @PostMapping("/login")
-    public Api<UserResponse> login(@Valid @RequestBody Api<UserLoginRequest> request) {
-        UserResponse response = userBusiness.login(request.getBody());
+    public Api<TokenResponse> login(@Valid @RequestBody Api<UserLoginRequest> request) {
+        TokenResponse response = userBusiness.login(request.getBody());
 
         return Api.OK(response);
     }

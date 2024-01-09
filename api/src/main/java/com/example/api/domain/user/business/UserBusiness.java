@@ -3,6 +3,8 @@ package com.example.api.domain.user.business;
 import com.example.api.annotation.Business;
 import com.example.api.common.error.ErrorCode;
 import com.example.api.common.exception.ApiException;
+import com.example.api.domain.token.business.TokenBusiness;
+import com.example.api.domain.token.controller.model.TokenResponse;
 import com.example.api.domain.user.controller.model.request.UserLoginRequest;
 import com.example.api.domain.user.controller.model.request.UserRegisterRequest;
 import com.example.api.domain.user.controller.model.response.UserResponse;
@@ -19,6 +21,7 @@ public class UserBusiness {
 
     private final UserService userService;
     private final UserConverter userConverter;
+    private final TokenBusiness tokenBusiness;
 
     /**
      * 사용자에 대한 가입 처리 로직
@@ -43,13 +46,12 @@ public class UserBusiness {
     /**
      * 사용자 로그인 대한 확인 및 처리 로직
      */
-    public UserResponse login(UserLoginRequest userLoginRequest) {
+    public TokenResponse login(UserLoginRequest userLoginRequest) {
         UserEntity userEntity = userService.login(userLoginRequest.getEmail(), userLoginRequest.getPassword());
 
-        // 사용자가 존재하지 않으면 예외 Throw
+        // JWT 토큰 생성
+        TokenResponse tokenResponse = tokenBusiness.issueToken(userEntity);
 
-        // TODO: JWT 토큰 생성 로직으로 변경
-
-        return userConverter.toResponse(userEntity);
+        return tokenResponse;
     }
 }
