@@ -3,7 +3,7 @@ package com.example.api.domain.token.business;
 import com.example.api.annotation.Business;
 import com.example.api.common.error.ErrorCode;
 import com.example.api.common.exception.ApiException;
-import com.example.api.domain.token.controller.model.TokenResponse;
+import com.example.api.domain.token.controller.model.response.TokenResponse;
 import com.example.api.domain.token.converter.TokenConverter;
 import com.example.api.domain.token.model.TokenDto;
 import com.example.api.domain.token.service.TokenService;
@@ -30,6 +30,12 @@ public class TokenBusiness {
                     return tokenConverter.toResponse(accessToken, refreshToken);
                 })
                 .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT));
+    }
+
+    public Long validationAccessToken(String accessToken) {
+        Long userId = tokenService.validationToken(accessToken);
+
+        return userId;
     }
 
 }

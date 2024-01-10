@@ -1,4 +1,4 @@
-package com.example.api.domain.token.controller.model;
+package com.example.api.domain.token.controller.model.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

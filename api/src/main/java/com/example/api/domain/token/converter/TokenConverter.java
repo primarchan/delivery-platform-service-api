@@ -3,7 +3,7 @@ package com.example.api.domain.token.converter;
 import com.example.api.annotation.Converter;
 import com.example.api.common.error.ErrorCode;
 import com.example.api.common.exception.ApiException;
-import com.example.api.domain.token.controller.model.TokenResponse;
+import com.example.api.domain.token.controller.model.response.TokenResponse;
 import com.example.api.domain.token.model.TokenDto;
 import lombok.RequiredArgsConstructor;
 

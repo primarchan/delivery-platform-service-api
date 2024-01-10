@@ -13,7 +13,8 @@ public enum TokenErrorCode implements ErrorCodeIfs {
 
     INVALID_TOKEN(HttpStatus.BAD_REQUEST.value(), 2000, "유효하지 않은 TOKEN"),
     EXPIRED_TOKEN(HttpStatus.BAD_REQUEST.value(), 2001, "만료된 TOKEN"),
-    TOKEN_EXCEPTION(HttpStatus.BAD_REQUEST.value(), 2002, "알 수 없는 TOKEN")
+    TOKEN_EXCEPTION(HttpStatus.BAD_REQUEST.value(), 2002, "알 수 없는 TOKEN"),
+    AUTHORIZATION_TOKEN_NOT_FOUND(HttpStatus.BAD_REQUEST.value(), 2003, "인증 헤더 AUTHORIZATION-TOKEN 없음")
     ;
 
     private final Integer httpStatusCode;

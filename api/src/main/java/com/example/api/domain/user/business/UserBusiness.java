@@ -4,7 +4,7 @@ import com.example.api.annotation.Business;
 import com.example.api.common.error.ErrorCode;
 import com.example.api.common.exception.ApiException;
 import com.example.api.domain.token.business.TokenBusiness;
-import com.example.api.domain.token.controller.model.TokenResponse;
+import com.example.api.domain.token.controller.model.response.TokenResponse;
 import com.example.api.domain.user.controller.model.request.UserLoginRequest;
 import com.example.api.domain.user.controller.model.request.UserRegisterRequest;
 import com.example.api.domain.user.controller.model.response.UserResponse;
@@ -12,7 +12,10 @@ import com.example.api.domain.user.converter.UserConverter;
 import com.example.api.domain.user.service.UserService;
 import com.example.db.user.UserEntity;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.context.request.RequestAttributes;
+import org.springframework.web.context.request.RequestContextHolder;
 
+import java.util.Objects;
 import java.util.Optional;
 
 @Business
@@ -53,5 +56,12 @@ public class UserBusiness {
         TokenResponse tokenResponse = tokenBusiness.issueToken(userEntity);
 
         return tokenResponse;
+    }
+
+    public UserResponse me(Long userId) {
+        UserEntity userEntity = userService.getUserWithThrow(userId);
+        UserResponse userResponse = userConverter.toResponse(userEntity);
+
+        return userResponse;
     }
 }
