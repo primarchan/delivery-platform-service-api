@@ -1,6 +1,5 @@
 package com.example.api.domain.userorder.service;
 
-import com.example.api.common.api.Api;
 import com.example.api.common.error.ErrorCode;
 import com.example.api.common.exception.ApiException;
 import com.example.db.userorder.UserOrderEntity;
