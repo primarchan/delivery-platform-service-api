@@ -20,6 +20,15 @@ public class UserOrderService {
     private final UserOrderRepository userOrderRepository;
 
     /**
+     * 사용자 주문 단 건 조회 (사용자 주문 상태와 관련없이)
+     */
+    public UserOrderEntity getUserOrderWithoutStatusWithThrow(Long id, Long userId) {
+
+        return userOrderRepository.findAllByIdAndUserId(id, userId)
+                .orElseThrow(() -> new ApiException(ErrorCode.NULL_POINT));
+    }
+
+    /**
      * 사용자 주문 단 건 조회
      */
     public UserOrderEntity getUserOrderWithThrow(Long id, Long userId) {
@@ -56,7 +65,7 @@ public class UserOrderService {
     /**
      * 과거 완료된 사용자 주문 내역
      */
-    public List<UserOrderEntity> HistoryUserOrderList(Long userId) {
+    public List<UserOrderEntity> historyUserOrderList(Long userId) {
         List<UserOrderStatus> historyUserOrderStatusList = List.of(UserOrderStatus.RECEIVE);
 
         return getUserOrderList(userId, historyUserOrderStatusList);
