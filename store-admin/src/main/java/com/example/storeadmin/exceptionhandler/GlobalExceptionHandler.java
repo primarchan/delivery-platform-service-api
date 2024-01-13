@@ -1,7 +1,7 @@
-package com.example.api.exception.handler;
+package com.example.storeadmin.exceptionhandler;
 
-import com.example.api.common.api.Api;
-import com.example.api.common.error.ErrorCode;
+import com.example.storeadmin.common.api.Api;
+import com.example.storeadmin.common.error.ErrorCode;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpStatus;
