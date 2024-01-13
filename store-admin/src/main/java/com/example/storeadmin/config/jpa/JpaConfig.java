@@ -1,4 +1,4 @@
-package com.example.api.config.jpa;
+package com.example.storeadmin.config.jpa;
 
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.context.annotation.Configuration;
