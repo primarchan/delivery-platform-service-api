@@ -25,7 +25,13 @@
 ## INFRASTRUCTURE
 ### Docker
 - docker-compose.yml
-- `docker-compse up -d`
+- `docker-compose up -d`
+
+### RABBITMQ
+- http://localhost:15672
+- RABBITMQ Management 활성화 커맨드 입력
+  - docker dashboard -> container -> open in terminal
+  - `rabbitmq-plugins enable rabbitmq_management`
 
 ## api/src/main/resources/application.yml
 ```yml
