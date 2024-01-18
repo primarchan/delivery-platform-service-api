@@ -10,6 +10,7 @@ import com.example.api.domain.userorder.controller.model.request.UserOrderReques
 import com.example.api.domain.userorder.controller.model.response.UserOrderDetailResponse;
 import com.example.api.domain.userorder.controller.model.response.UserOrderResponse;
 import com.example.api.domain.userorder.converter.UserOrderConverter;
+import com.example.api.domain.userorder.producer.UserOrderProducer;
 import com.example.api.domain.userorder.service.UserOrderService;
 import com.example.api.domain.userordermenu.converter.UserOrderMenuConverter;
 import com.example.api.domain.userordermenu.service.UserOrderMenuService;
@@ -30,6 +31,7 @@ public class UserOrderBusiness {
     private final StoreConverter storeConverter;
     private final StoreMenuService storeMenuService;
     private final UserOrderService userOrderService;
+    private final UserOrderProducer userOrderProducer;
     private final StoreMenuConverter storeMenuConverter;
     private final UserOrderConverter userOrderConverter;
     private final UserOrderMenuService userOrderMenuService;
@@ -49,7 +51,11 @@ public class UserOrderBusiness {
                 .map(storeMenuEntity -> userOrderMenuConverter.toEntity(savedUserOrderEntity, storeMenuEntity))
                 .toList();
 
+        // 주문내역 기록
         userOrderMenuEntityList.forEach(userOrderMenuService::order);
+
+        // 비동기로 가맹점에 주문 알리기
+        userOrderProducer.sendOrder(savedUserOrderEntity);
 
         return userOrderConverter.toResponse(savedUserOrderEntity);
     }
