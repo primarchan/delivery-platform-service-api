@@ -28,16 +28,15 @@ public class AuthorizationService implements UserDetailsService {
         Optional<StoreUserEntity> storeUserEntity = storeUserService.getRegisteredUser(username);
         Optional<StoreEntity> storeEntity = storeRepository.findFirstByIdAndStatusOrderByIdDesc(storeUserEntity.get().getStoreId(), StoreStatus.REGISTERED);
 
-        return storeUserEntity
-                .map(entity -> UserSession.builder()
+        return storeUserEntity.map(entity -> UserSession.builder()
                         .userId(entity.getId())
                         .email(entity.getEmail())
                         .password(entity.getPassword())
                         .status(entity.getStatus())
                         .role(entity.getRole())
                         .registeredAt(entity.getRegisteredAt())
-                        .unregisteredAt(entity.getUnregisteredAt())
                         .lastLoginAt(entity.getLastLoginAt())
+                        .unregisteredAt(entity.getUnregisteredAt())
                         .storeId(storeEntity.get().getId())
                         .storeName(storeEntity.get().getName())
                         .build())
