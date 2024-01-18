@@ -6,6 +6,7 @@
 - Spring Boot 2.7.9
 - Spring Data JPA
 - MySQL
+- RabbitMQ
 - Gradle
 - Lombok
 - JUnit5
@@ -33,9 +34,47 @@
   - docker dashboard -> container -> open in terminal
   - `rabbitmq-plugins enable rabbitmq_management`
 
-## api/src/main/resources/application.yml
+
+## application.yml
+- api/src/main/resources/application.yml
 ```yml
 spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ****
+    password: ****
+
+  jpa:
+    show-sql: true
+    properties:
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:mysql://localhost:3307/delivery?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ****
+    password: ****
+
+token:
+  secret:
+    key: SpringBootJWTHelperTokenSecretKeyValue123!@#
+  access-token:
+    plus-hour: 1
+  refresh-token:
+    plus-hour: 12
+```
+
+- store-admin/src/main/resources/application.yml
+```yml
+server:
+  port: 8081
+
+spring:
+  application:
+    name: store-admin
   jpa:
     show-sql: true
     properties:
@@ -50,7 +89,26 @@ spring:
     password: ****
 ```
 
-### docker-compose.yml
+- db/src/main/resources/application.yml
+```yml
+spring:
+  application:
+    name: store-admin
+  jpa:
+    show-sql: true
+    properties:
+      format_sql: true
+      dialect: org.hibernate.dialect.MySQL8Dialect
+    hibernate:
+      ddl-auto: validate
+  datasource:
+    url: jdbc:mysql://localhost:3307/delivery?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: ****
+    password: ****
+```
+
+- docker-compose.yml
 ```yml
 version: "3"
 services:
