@@ -43,7 +43,9 @@ public class UserOrderBusiness {
                 .map(storeMenuService::getStoreMenuWithThrow)
                 .collect(Collectors.toList());
 
-        UserOrderEntity userOrderEntity = userOrderConverter.toEntity(user, storeMenuEntityList);
+        Long storeId = body.getStoreId();
+
+        UserOrderEntity userOrderEntity = userOrderConverter.toEntity(user, storeId, storeMenuEntityList);
 
         UserOrderEntity savedUserOrderEntity  = userOrderService.order(userOrderEntity);
 
