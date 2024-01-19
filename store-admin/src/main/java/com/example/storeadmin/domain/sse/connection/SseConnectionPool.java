@@ -29,4 +29,5 @@ public class SseConnectionPool implements ConnectionPoolIfs<String, UserSseConne
         log.info("Callback connection pool completion : {}", userSseConnection);
         connectionPool.remove(userSseConnection.getUniqueKey());
     }
+
 }
